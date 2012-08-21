@@ -1,0 +1,18 @@
+ACLOCAL_AMFLAGS = -I m4
+
+if BUILD_DOCS
+DOCDIR = Doc
+endif
+
+pkgconfigdir = $(libdir)/pkgconfig
+pkgconfig_DATA = $(PACKAGE_NAME).pc
+
+EXTRA_DIST = README.txt 
+
+MAINTAINERCLEANFILES = \
+        aclocal.m4 \
+        config.h \
+        config.h.in \
+        configure \
+        Makefile.in \
+	stamp-*
