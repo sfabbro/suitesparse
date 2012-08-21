@@ -12,7 +12,7 @@ prefix=${PWD}/usr
 
 # need to run sync.bash before?
 # ./sync.bash
-[ -d SuiteSparse ] && tar xf SuiteSparse.tar.gz
+[ ! -d SuiteSparse ] && tar xf SuiteSparse.tar.gz
 
 # backup all Makefile's
 for i in $(find SuiteSparse/${lib} -name Makefile); do
