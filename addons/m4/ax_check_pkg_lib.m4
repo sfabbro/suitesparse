@@ -67,57 +67,47 @@ AC_ARG_VAR(m4_toupper($1)[_LIBS],
 	   [Linking flags for ]$1[ libraries])
 
 # check if user provided --with-<pkg>-cflags
-AS_IF([test x"]m4_toupper($1)["_CFLAGS" != x],
-      AC_ARG_WITH(m4_tolower($1)[-cflags],
-	          AC_HELP_STRING([--with-]m4_tolower($1)[-cflags],
-				 [Preprocessing flags for ]$1[ headers]),
-		  AS_IF([test "$withval" != no],
-		  	m4_toupper($1)[_CFLAGS="$withval"]),
-        	  []
-      ),
-      []
-)
+AC_ARG_WITH(m4_tolower($1)[-cflags],
+	    AS_HELP_STRING([--with-m4_tolower($1)-cflags=CFLAGS],
+		           [Preprocessing flags for $1 headers]),
+	    m4_toupper($1)[_CFLAGS="$withval"])
 
 # check if user provided --with-<pkg>-libs
-AS_IF([test x"]m4_toupper($1)["_LIBS" != x],
-      AC_ARG_WITH(m4_tolower($1)[-libs],
-	          AC_HELP_STRING([--with-]m4_tolower($1)[-libs],
-				 [Linking flags for ]$1[ libraries]),
-		  AS_IF([test "$withval" != no],
-		  	m4_toupper($1)[_LIBS="$withval"]),
-        	  []
-      ),
-      []
-)
+AC_ARG_WITH(m4_tolower($1)[-libs],
+	    AS_HELP_STRING([--with-m4_tolower($1)-libs=LIBS],
+			   [Linking flags for $1 libraries]),
+	    m4_toupper($1)[_LIBS="$withval"])
 
 # check with pkg-config
-AS_IF(m4_toupper($1)["_LIBS" = x],
-      PKG_CHECK_MODULES(m4_toupper($1), m4_tolower($1))
-)
+AS_IF([ test x"$]m4_toupper($1)[_LIBS" = x ],
+      [PKG_CHECK_MODULES(m4_toupper($1), m4_tolower($1))])
 
-# define default <PKG>_LIBS if nothing was set
-AS_IF([test x"]m4_toupper($1)["_LIBS" = x],
+# define default <PKG>_LIBS if none was set so far
+AS_IF([ test x"$]m4_toupper($1)[_LIBS" = x ],
       m4_toupper($1)[_LIBS="-l]m4_tolower($1)["])
 
 # now check header and symbol validity
-AS_IF([test -z ]$4, [ax_cv_symbol=main], [ax_cv_symbol=]$4)
+AS_IF([ test x"]$3[" = x ],
+      [ax_cv_symbol=main],
+      [ax_cv_symbol=]$3)
 
 AC_CACHE_VAL(AS_TR_SH([ax_cv_has_]m4_tolower($1)),
 	     [save_CPPFLAGS="$CPPFLAGS"
 	      save_LDFLAGS="$LDFLAGS"
-	      AS_IF([test "x$]m4_toupper($1)[_CFLAGS" != "x"],
+	      AS_IF([ test x"$]m4_toupper($1)[_CFLAGS" != x ],
 	            [CPPFLAGS="$CPPFLAGS $]m4_toupper($1)[_CFLAGS"])
+	      AS_IF([ test "x$]m4_toupper($1)[_LIBS" != x ],
+	      	    [LDFLAGS="$LDFLAGS $]m4_toupper($1)[_LIBS"])
 	      AC_CHECK_HEADER($2,
-		[AC_CHECK_LIB($3, 
+		[AC_CHECK_LIB(m4_tolower($1),
 			      [$ax_cv_symbol],
 			      [AS_TR_SH([ax_cv_has_]m4_tolower($1))=yes],
          		      [AS_TR_SH([ax_cv_has_]m4_tolower($1))=no])],
 		[AS_TR_SH([ax_cv_has_]m4_tolower($1))=no])
 	      CPPFLAGS="$save_CPPFLAGS"
-	      LDFLAGS="$save_LDFLAGS"]
-)
+	      LDFLAGS="$save_LDFLAGS"])
 
-AS_IF([test "$]AS_TR_SH([ax_cv_has_]m4_tolower($1))[" = "yes"],
+AS_IF([ test x"$]AS_TR_SH([ax_cv_has_]m4_tolower($1))[" = xyes ],
       AC_DEFINE([HAVE_]m4_toupper($1), [1], [Define to 1 if ]$1[ is found])
     [$4],
     [$5])
