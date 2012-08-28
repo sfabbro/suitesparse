@@ -1,0 +1,13 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@
+
+Name: @PACKAGE_NAME@
+Description: COLumn Approximate Minimum Degree ordering
+Version: @PACKAGE_VERSION@
+URL: http://www.cise.ufl.edu/research/sparse/colamd/
+Libs: -L${libdir} -lcolamd
+Libs.private: -lm
+Cflags: -I${includedir}
+Requires: suitesparseconfig
