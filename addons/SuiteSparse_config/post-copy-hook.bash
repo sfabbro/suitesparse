@@ -1,5 +1,4 @@
 #!/bin/bash
 
-mv xerbla/xerbla.c xerbla/cerbla.c
-mv xerbla/xerbla.h xerbla/cerbla.h
+[[ -e xerbla/xerbla.c ]] && mv xerbla/{x,c}erbla.c
 

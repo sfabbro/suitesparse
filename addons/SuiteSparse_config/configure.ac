@@ -16,7 +16,9 @@ AC_CHECK_HEADERS([limits.h stdlib.h])
 # Checks for typedefs, structures, and compiler characteristics
 AC_TYPE_SIZE_T
 AC_FUNC_MALLOC
-AC_CHECK_FUNCS([clock_gettime])
+
+# Req
+AC_CHECK_LIB([rt], [clock_gettime])
 
 # Optional xerbla mini libraries
 AC_MSG_CHECKING([whether to build the xerbla libraries])

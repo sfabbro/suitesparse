@@ -8,4 +8,5 @@ Description: http://www.cise.ufl.edu/research/sparse/SuiteSparse_config/
 Version: @PACKAGE_VERSION@
 URL: http://www.cise.ufl.edu/research/sparse/
 Libs: -L${libdir} -lsuitesparseconfig
+Libs.private: -lrt
 Cflags: -I${includedir}
