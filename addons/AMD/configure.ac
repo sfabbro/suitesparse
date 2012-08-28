@@ -2,19 +2,19 @@ AC_INIT([amd], [2.3.1], [davis@cise.ufl.edu])
 
 AC_CONFIG_SRCDIR([Source/amd_global.c])
 AC_CONFIG_HEADERS([config.h])
+AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_AUX_DIR([config])
 
 AM_INIT_AUTOMAKE([foreign])
 
 LT_INIT
+AC_PROG_CC
 
 # Checks for header files
 AC_CHECK_HEADERS([limits.h stddef.h stdlib.h])
 
 # Checks for typedefs, structures, and compiler characteristics
 AC_TYPE_SIZE_T
-
-# Checks for library functions
 AC_FUNC_ERROR_AT_LINE
 
 # Checks and automatically links with required system libraries
@@ -37,11 +37,13 @@ AC_ARG_ENABLE([fortran],
 		   [Enable compilation of the fortran interface]), 
     [enable_fortran=$enableval],
     [enable_fortran=no])
-
-AS_IF([test x"$enable_fortran" != xno],
-      [AC_MSG_RESULT([yes]) LT_LANG([Fortran 77])],
-      AC_MSG_RESULT([no]))
-AM_CONDITIONAL([ENABLE_FORTRAN], [test x$enable_fortran != xno])
+if test x"$enable_fortran" = xyes ; then
+   AC_MSG_RESULT([yes])
+   LT_LANG([Fortran 77]),
+else
+    AC_MSG_RESULT([no])
+fi
+AM_CONDITIONAL([ENABLE_FORTRAN], [test x$enable_fortran = xyes])
 
 AC_CONFIG_FILES([Demo/Makefile
                  Doc/Makefile

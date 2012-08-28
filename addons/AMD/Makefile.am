@@ -1,9 +1,16 @@
-include config/include.am
+
+ACLOCAL_AMFLAGS = -I m4
+
+include $(top_srcdir)/config/common.am
+
+DISTCHECK_CONFIGURE_FLAGS = \
+	--enable-fortran \
+	--with-doc
 
 if BUILD_DOCS
 DOCDIR = Doc
 endif
 
-SUBDIRS = Demo Source $(DOCDIR)
+SUBDIRS = Source Demo $(DOCDIR)
 
 include_HEADERS = Include/amd.h Include/amd_internal.h
