@@ -1,2 +1,4 @@
 SuiteSparse/*
 SuiteSparse*.tar*
+distfiles/
+usr/
