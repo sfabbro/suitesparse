@@ -1,0 +1,30 @@
+LDADD = $(top_builddir)/Source/lib$(PACKAGE_NAME).la
+
+# we cange the .out extension because
+# it creates conflicts in automake binaries
+# TODO: find a way for automake to not mess with the .out extensions
+
+ext = .dat
+
+EXTRA_DIST = $(addsuffix $(ext),$(check_PROGRAMS))
+
+check-local: $(check_PROGRAMS)
+	@for i in $(check_PROGRAMS); do \
+		echo "------------------------" ; \
+		./$$i$(EXEEXT) > my_$$i$(ext); \
+		diff -Bbe -Iversion $(srcdir)/$$i$(ext) my_$$i$(ext) > /dev/null; \
+		if test "x$$?" = "x0"; then \
+			echo "Test $$i PASSED."; \
+		else \
+			echo "** Test $$i FAILED. Diff: "; \
+			diff -Nu $(srcdir)/$$i$(ext) my_$$i$(ext); \
+			doexit="yes"; \
+		fi; \
+	done; \
+	echo "------------------------" ; \
+	if test "x$$doexit" = "xyes"; then \
+		exit 1; \
+	fi
+
+MAINTAINERCLEANFILES = Makefile.in
+CLEANFILES = my_*$(ext)
