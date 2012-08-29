@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ $# -lt 1 ]; then
-    echo $"$(basename $0) PKG [EXTRA CONFIGURE OPTIONS]
+    echo $"Usage: $(basename $0) PKG
  Available SuiteSparse PKG:
 $(ls -1d addons/* | xargs -n1 basename | grep -v '^\(config\|m4\)' | awk '{print "  * "$1}')"
     exit
