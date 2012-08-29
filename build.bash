@@ -56,7 +56,6 @@ build_suitesparse_pkg() {
     echo "Successfully built ${tb} now in distfiles"
 }
 
-lib=$1
 PREFIX=${PWD}/usr
 
 [[ -e SuiteSparse.tar.gz ]] || ./sync.bash
@@ -68,4 +67,4 @@ fi
 
 [[ -d SuiteSparse ]] || tar xf SuiteSparse.tar.gz
 
-build_suitesparse_package ${lib}
+build_suitesparse_pkg $1
