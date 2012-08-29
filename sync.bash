@@ -1,12 +1,7 @@
 #!/bin/bash
 
-[ $# -lt 1 ] && echo "$0 <suitesparse version>" && exit
-
-PV=${1}
-
 # sync with upstream
-wget -nc -c http://www.cise.ufl.edu/research/sparse/SuiteSparse/SuiteSparse-${PV}.tar.gz
-ln -sfn SuiteSparse-${PV}.tar.gz SuiteSparse.tar.gz 
+wget -nc -c http://www.cise.ufl.edu/research/sparse/SuiteSparse/current/SuiteSparse.tar.gz
 
 # sync m4 macros
 for macro in ax_blas ax_lapack; do
