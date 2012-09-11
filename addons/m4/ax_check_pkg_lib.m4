@@ -80,7 +80,9 @@ AC_ARG_WITH(m4_tolower($1)[-libs],
 
 # check with pkg-config
 AS_IF([ test x"$]m4_toupper($1)[_LIBS" = x ],
-      [PKG_CHECK_MODULES(m4_toupper($1), m4_tolower($1))])
+      [PKG_CHECK_MODULES(m4_toupper($1), 
+      			 m4_tolower($1),
+			 m4_toupper($1)[_PC=]m4_tolower($1))])
 
 # define default <PKG>_LIBS if none was set so far
 AS_IF([ test x"$]m4_toupper($1)[_LIBS" = x ],
@@ -106,6 +108,10 @@ AC_CACHE_VAL(AS_TR_SH([ax_cv_has_]m4_tolower($1)),
 		[AS_TR_SH([ax_cv_has_]m4_tolower($1))=no])
 	      CPPFLAGS="$save_CPPFLAGS"
 	      LDFLAGS="$save_LDFLAGS"])
+
+AC_SUBST(m4_toupper($1)[_LIBS])
+AC_SUBST(m4_toupper($1)[_CFLAGS])
+AC_SUBST(m4_toupper($1)[_PC])
 
 AS_IF([ test x"$]AS_TR_SH([ax_cv_has_]m4_tolower($1))[" = xyes ],
       AC_DEFINE([HAVE_]m4_toupper($1), [1], [Define to 1 if ]$1[ is found])
