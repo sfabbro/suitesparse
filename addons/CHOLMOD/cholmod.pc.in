@@ -1,0 +1,14 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@
+
+Name: @PACKAGE_NAME@
+Description: Supernodal sparse Cholesky factorization and update/downdate
+Version: @PACKAGE_VERSION@
+URL: http://www.cise.ufl.edu/research/sparse/cholmod/
+Libs: -L${libdir} -lcholmod
+Libs.private: -lm -lrt @PC_LIBS@
+Cflags: -I${includedir}
+Requires: suitesparseconfig
+Requires.private: @BLAS_PC@ @LAPACK_PC@ @CUDA_PC@ @METIS_PC@ @AMD_PC@ @CAMD_PC@ @COLAMD_PC@ @CCOLAMD_PC@
