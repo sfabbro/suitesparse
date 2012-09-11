@@ -2,7 +2,7 @@
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = $(PACKAGE_NAME).pc
 
-EXTRA_DIST = README.txt 
+EXTRA_DIST = README.txt MATLAB
 
 MAINTAINERCLEANFILES = \
         aclocal.m4 \
