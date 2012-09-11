@@ -7,7 +7,7 @@ Name: @PACKAGE_NAME@
 Description: Consise sparse Cholesky factorization package
 Version: @PACKAGE_VERSION@
 URL: http://www.cise.ufl.edu/research/sparse/ldl/
-Libs: -L${libdir} -lcamd
+Libs: -L${libdir} -lldl
 Libs.private: -lm
 Cflags: -I${includedir}
 Requires: suitesparseconfig
