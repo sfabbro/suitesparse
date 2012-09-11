@@ -36,8 +36,7 @@ build_suitesparse_pkg() {
     # configure, build, test, and package
     autoreconf -vi && \
 	PKG_CONFIG_PATH="${PREFIX}/lib/pkgconfig:$PKG_CONFIG_PATH" \
-	./configure --prefix=${PREFIX} && \
-	make check install && make distcheck
+	./configure && make distcheck
     # cleanup
     if [[ $? -eq 0 ]]; then
 	make maintainer-clean
@@ -49,11 +48,20 @@ build_suitesparse_pkg() {
 	done
     fi
     popd > /dev/null
-    
-    # save generated tar ball
+
+    # now install and save generated tar ball
     local tb=$(find SuiteSparse/${lib} -name \*.tar.gz)
-    [[ -e ${tb} ]] && mkdir -p distfiles && mv ${tb} distfiles/
-    echo "Successfully built ${tb} now in distfiles"
+    local src=$(basename ${tb} .tar.gz)
+    tar xf ${tb} && \
+	mkdir ${lib}_build && \
+	pushd ${lib}_build && \
+	PKG_CONFIG_PATH="${PREFIX}/lib/pkgconfig:$PKG_CONFIG_PATH" \
+	../${src}/configure --prefix=${PREFIX} --disable-shared && \
+	make install && \
+	popd && \
+	rm -rf ${lib}_build ${src} && \
+	mkdir -p distfiles && mv ${tb} distfiles/ && \
+	echo "Successfully built ${tb} now in distfiles"
 }
 
 PREFIX=${PWD}/usr
