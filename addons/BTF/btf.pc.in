@@ -1,0 +1,12 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@
+
+Name: @PACKAGE_NAME@
+Description: Permutation to Block Triangular Form
+Version: @PACKAGE_VERSION@
+URL: http://www.cise.ufl.edu/research/sparse/btf/
+Libs: -L${libdir} -lbtf
+Cflags: -I${includedir}
+Requires: suitesparseconfig
