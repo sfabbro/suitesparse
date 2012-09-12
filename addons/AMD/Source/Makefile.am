@@ -1,6 +1,8 @@
 AM_CPPFLAGS = -I$(top_srcdir)/Include @SUITESPARSECONFIG_CFLAGS@
 
-AMDCSRC = \
+AMDSRC = \
+	$(top_srcdir)/Include/amd_internal.h \
+	$(top_srcdir)/Include/amd.h \
 	amd_1.c \
 	amd_2.c \
 	amd_aat.c \
@@ -15,9 +17,9 @@ AMDCSRC = \
 	amd_valid.c
 
 noinst_LTLIBRARIES = libamdi.la libamdl.la
-libamdi_la_SOURCES = $(AMDCSRC)
+libamdi_la_SOURCES = $(AMDSRC)
 libamdi_la_CPPFLAGS = $(AM_CPPFLAGS) -DDINT
-libamdl_la_SOURCES = $(AMDCSRC)
+libamdl_la_SOURCES = $(AMDSRC)
 libamdl_la_CPPFLAGS = $(AM_CPPFLAGS) -DDLONG
 
 lib_LTLIBRARIES = libamd.la
@@ -30,4 +32,3 @@ libamdf77_la_SOURCES = amd.f amdbar.f
 endif
 
 MAINTAINERCLEANFILES = Makefile.in
-

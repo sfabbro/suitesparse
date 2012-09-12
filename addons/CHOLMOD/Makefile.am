@@ -55,13 +55,9 @@ EXTRA_LIBADD += \
 	$(top_builddir)/Supernodal/libsupernodall.la
 endif
 
-if BUILD_DOCS
-EXTRA_SUBDIRS += Doc
-endif
-
 lib_LTLIBRARIES = libcholmod.la
 
-SUBDIRS = Core Include $(EXTRA_SUBDIRS) Demo
+SUBDIRS = Core Include $(EXTRA_SUBDIRS) Demo Doc
 
 libcholmod_la_SOURCES = 
 libcholmod_la_LIBADD = \

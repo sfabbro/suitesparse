@@ -3,18 +3,19 @@ AMD_UserGuide.pdf:
 	echo '\begin{verbatim}' > amd_h.tex
 	expand -8 $(top_srcdir)/Include/amd.h >> amd_h.tex
 	echo '\end{verbatim}' >> amd_h.tex
-	ln -s $(srcdir)/AMD_UserGuide.tex $(top_builddir)/Doc/AMD_UserGuide.tex
-	ln -s $(srcdir)/AMD_UserGuide.bib $(top_builddir)/Doc/AMD_UserGuide.bib
+	ln -s $(srcdir)/*.{tex,bib} .
 	$(PDFLATEX) AMD_UserGuide
 	$(BIBTEX)  AMD_UserGuide
 	$(PDFLATEX) AMD_UserGuide
 	$(PDFLATEX) AMD_UserGuide
 
+doc_DATA = ChangeLog
+
+if BUILD_DOCS
 pdf-local: AMD_UserGuide.pdf
-
 all-local: pdf-local
-
-doc_DATA = AMD_UserGuide.pdf ChangeLog
+doc_DATA += AMD_UserGuide.pdf
+endif
 
 EXTRA_DIST = lesser.txt License AMD_UserGuide.tex AMD_UserGuide.bib
 

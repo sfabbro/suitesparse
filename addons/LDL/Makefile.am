@@ -7,10 +7,8 @@ DISTCHECK_CONFIGURE_FLAGS = \
 	--with-doc \
 	--with-amd
 
-if BUILD_DOCS
-DOCDIR = Doc
-endif
+SUBDIRS = Source Demo Doc
 
-SUBDIRS = Source Demo $(DOCDIR)
+EXTRA_DIST += MATLAB
 
 include_HEADERS = Include/ldl.h

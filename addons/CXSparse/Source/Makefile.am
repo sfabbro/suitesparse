@@ -1,6 +1,7 @@
 AM_CPPFLAGS = -I$(top_srcdir)/Include @SUITESPARSECONFIG_CFLAGS@
 
 CS_SOURCES = \
+	$(top_srcdir)/Include/cs.h \
 	cs_add.c cs_amd.c cs_chol.c cs_cholsol.c cs_counts.c cs_cumsum.c \
         cs_droptol.c cs_dropzeros.c cs_dupl.c cs_entry.c \
         cs_etree.c cs_fkeep.c cs_gaxpy.c cs_happly.c cs_house.c cs_ipvec.c \

@@ -5,4 +5,8 @@ include $(top_srcdir)/config/common.am
 
 SUBDIRS = Source Doc
 
-include_HEADERS = Include/btf.h Include/btf_internal.h
+EXTRA_DIST += MATLAB
+
+noinst_HEADERS =  Include/btf_internal.h
+include_HEADERS = Include/btf.h
+

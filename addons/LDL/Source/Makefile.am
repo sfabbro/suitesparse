@@ -1,6 +1,6 @@
 AM_CPPFLAGS = -I$(top_srcdir)/Include @SUITESPARSECONFIG_CFLAGS@
 
-LDLSRC = ldl.c
+LDLSRC = ldl.c $(top_srcdir)/Include/ldl.h
 
 noinst_LTLIBRARIES = libldli.la libldll.la
 libldli_la_SOURCES = $(LDLSRC)

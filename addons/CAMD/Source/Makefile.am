@@ -1,6 +1,8 @@
 AM_CPPFLAGS = -I$(top_srcdir)/Include @SUITESPARSECONFIG_CFLAGS@
 
-CAMDCSRC = \
+CAMDSRC = \
+	$(top_srcdir)/Include/camd_internal.h \
+	$(top_srcdir)/Include/camd.h \
 	camd_1.c \
 	camd_2.c \
 	camd_aat.c \
@@ -14,9 +16,9 @@ CAMDCSRC = \
 	camd_valid.c
 
 noinst_LTLIBRARIES = libcamdi.la libcamdl.la
-libcamdi_la_SOURCES = $(CAMDCSRC)
+libcamdi_la_SOURCES = $(CAMDSRC)
 libcamdi_la_CPPFLAGS = $(AM_CPPFLAGS) -DDINT
-libcamdl_la_SOURCES = $(CAMDCSRC)
+libcamdl_la_SOURCES = $(CAMDSRC)
 libcamdl_la_CPPFLAGS = $(AM_CPPFLAGS) -DDLONG
 
 lib_LTLIBRARIES = libcamd.la

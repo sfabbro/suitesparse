@@ -6,10 +6,9 @@ include $(top_srcdir)/config/common.am
 DISTCHECK_CONFIGURE_FLAGS = \
 	--with-doc
 
-if BUILD_DOCS
-DOCDIR = Doc
-endif
+SUBDIRS = Source Demo Doc
 
-SUBDIRS = Source Demo $(DOCDIR)
+EXTRA_DIST += MATLAB
 
-include_HEADERS = Include/camd.h Include/camd_internal.h
+noinst_HEADERS = Include/camd_internal.h
+include_HEADERS = Include/camd.h

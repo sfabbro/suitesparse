@@ -24,15 +24,17 @@ if WITH_SUPERNODAL
 EXTRA_HEADERS += cholmod_supernodal.h
 endif
 
+noinst_HEADERS = \
+	cholmod_blas.h \
+	cholmod_complexity.h \
+	cholmod_internal.h \
+	cholmod_template.h
+
 include_HEADERS = \
 	$(EXTRA_HEADERS) \
 	cholmod.h \
-	cholmod_blas.h \
-	cholmod_complexity.h \
 	cholmod_config.h \
 	cholmod_core.h \
-	cholmod_internal.h \
-	cholmod_io64.h \
-	cholmod_template.h
+	cholmod_io64.h
 
 EXTRA_DIST = README.txt License.txt

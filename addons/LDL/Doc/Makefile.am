@@ -6,11 +6,13 @@ ldl_userguide.pdf:
 	$(PDFLATEX) ldl_userguide
 	$(PDFLATEX) ldl_userguide
 
+doc_DATA = ChangeLog
+
+if BUILD_DOCS
 pdf-local: ldl_userguide.pdf
-
 all-local: pdf-local
-
-doc_DATA = ldl_userguide.pdf ChangeLog
+doc_DATA += ldl_userguide.pdf
+endif
 
 EXTRA_DIST = lesser.txt ldl.bib ldl_userguide.tex
 

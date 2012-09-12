@@ -7,10 +7,9 @@ DISTCHECK_CONFIGURE_FLAGS = \
 	--enable-fortran \
 	--with-doc
 
-if BUILD_DOCS
-DOCDIR = Doc
-endif
+SUBDIRS = Source Demo Doc
 
-SUBDIRS = Source Demo $(DOCDIR)
+EXTRA_DIST += MATLAB
 
-include_HEADERS = Include/amd.h Include/amd_internal.h
+noinst_HEADERS = Include/amd_internal.h
+include_HEADERS = Include/amd.h

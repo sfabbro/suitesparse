@@ -169,11 +169,13 @@ UserGuide.pdf:
 	$(PDFLATEX) UserGuide
 	$(PDFLATEX) UserGuide
 
+doc_DATA = ChangeLog
+
+if BUILD_DOCS
 pdf-local: UserGuide.pdf
-
 all-local: pdf-local
-
-doc_DATA = UserGuide.pdf ChangeLog
+doc_DATA += UserGuide.pdf
+endif
 
 EXTRA_DIST = UserGuide.tex UserGuide.bib getproto rule.awk header.tex \
 	footer.tex getmproto mfooter.tex mheader.tex mfile.awk
