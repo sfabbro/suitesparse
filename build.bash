@@ -37,6 +37,7 @@ build_suitesparse_pkg() {
     autoreconf -vi && \
 	PKG_CONFIG_PATH="${PREFIX}/lib/pkgconfig:$PKG_CONFIG_PATH" \
 	./configure && make distcheck
+
     # cleanup
     if [[ $? -eq 0 ]]; then
 	make maintainer-clean
@@ -46,6 +47,10 @@ build_suitesparse_pkg() {
 	for i in $(find . -name Makefile.orig); do
 	    mv ${i} ${i/.orig/}
 	done
+    else
+	popd > /dev/null
+	echo "!! FAILED - See above"
+	return
     fi
     popd > /dev/null
 
@@ -56,7 +61,7 @@ build_suitesparse_pkg() {
 	mkdir ${lib}_build && \
 	pushd ${lib}_build && \
 	PKG_CONFIG_PATH="${PREFIX}/lib/pkgconfig:$PKG_CONFIG_PATH" \
-	../${src}/configure --prefix=${PREFIX} --disable-shared && \
+	../${src}/configure --prefix=${PREFIX} --disable-static && \
 	make install && \
 	popd && \
 	rm -rf ${lib}_build ${src} && \
