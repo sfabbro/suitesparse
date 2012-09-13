@@ -10,4 +10,4 @@ SUBDIRS = Source Demo Doc
 
 include_HEADERS = Include/klu.h Include/klu_version.h Include/klu_internal.h
 
-EXTRA_DIST += Matrix
+EXTRA_DIST += MATLAB Matrix Tcov User
