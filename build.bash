@@ -3,6 +3,7 @@
 if [ $# -lt 1 ]; then
     echo $"Usage: $(basename $0) PKG
  Available SuiteSparse PKG:
+  * ALL (build all packages)
 $(ls -1d addons/* | xargs -n1 basename | grep -v '^\(config\|m4\)' | awk '{print "  * "$1}')"
     exit
 fi
@@ -28,11 +29,11 @@ build_suitesparse_pkg() {
     [[ -x post-copy-hook.bash ]] && ./post-copy-hook.bash
     # try to guess version
     if [ -e Doc/ChangeLog ]; then
-	version=$(awk '{print $5;exit};1' Doc/ChangeLog)
+	version=$(awk '{print $5;exit};1' Doc/ChangeLog | sed 's/,/./g')
     else
 	version=$(grep VERSION ../README.txt | awk '{print $6}')
     fi
-    sed -i -e "/AC_INIT/s/[[:digit:]]\.[[:digit:]]\{3\}/${version}/" configure.ac
+    sed -i -e "/AC_INIT/s/[[:digit:]]\.[[:digit:]]\.[[:digit:]]/${version}/" configure.ac
     # configure, build, test, and package
     autoreconf -vi && \
 	PKG_CONFIG_PATH="${PREFIX}/lib/pkgconfig:$PKG_CONFIG_PATH" \
@@ -80,4 +81,21 @@ fi
 
 [[ -d SuiteSparse ]] || tar xf SuiteSparse.tar.gz
 
-build_suitesparse_pkg $1
+if [[ $1 == ALL ]]; then
+    # need to keep an order for dependencies
+    build_suitesparse_pkg SuiteSparse_config
+    build_suitesparse_pkg AMD
+    build_suitesparse_pkg COLAMD
+    build_suitesparse_pkg CAMD
+    build_suitesparse_pkg CCOLAMD
+    build_suitesparse_pkg CXSparse
+    build_suitesparse_pkg RBio
+    build_suitesparse_pkg LDL
+    build_suitesparse_pkg BTF
+    build_suitesparse_pkg CHOLMOD
+    build_suitesparse_pkg KLU
+    build_suitesparse_pkg SPQR
+    build_suitesparse_pkg UMFPACK
+else
+    build_suitesparse_pkg $1
+fi

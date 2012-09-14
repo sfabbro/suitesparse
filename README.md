@@ -17,3 +17,7 @@ proper version in the distfiles directory.
 Example:
 
  > ./build.bash AMD	# make a tar ball for latest included AMD
+
+or
+
+ > ./build.bash ALL     # build all SuiteSparse packages in order
