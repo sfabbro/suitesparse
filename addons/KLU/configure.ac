@@ -1,4 +1,4 @@
-AC_INIT([klu], [1.2.0], [davis@cise.ufl.edu])
+AC_INIT([klu], [1.2.1], [davis@cise.ufl.edu])
 
 AC_CONFIG_SRCDIR([Source/klu_defaults.c])
 AC_CONFIG_HEADERS([config.h])
