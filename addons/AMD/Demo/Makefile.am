@@ -17,3 +17,4 @@ amd_f77simple_LDADD = $(top_builddir)/Source/libamdf77.la
 #amd_f77cross_LDADD = $(LDADD) $(top_builddir)/Source/libamdf77.la
 endif
 
+EXTRA_DIST += amd_f77demo.dat amd_f77simple.dat
