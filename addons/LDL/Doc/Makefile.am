@@ -2,7 +2,7 @@
 ldl_userguide.pdf:
 	ln -s $(srcdir)/*.{tex,bib} .
 	$(PDFLATEX) ldl_userguide
-	$(BIBTEX)  ldl
+	$(BIBTEX)  ldl_userguide
 	$(PDFLATEX) ldl_userguide
 	$(PDFLATEX) ldl_userguide
 
