@@ -6,7 +6,7 @@ DISTCHECK_CONFIGURE_FLAGS = \
 	--enable-expert \
 	--enable-timing \
 	--with-doc \
-	--with-metis \
+	--with-partition \
 	--with-tbb
 
 SUBDIRS = Source Demo Doc

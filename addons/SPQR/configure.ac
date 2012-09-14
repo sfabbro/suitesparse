@@ -65,7 +65,7 @@ AC_ARG_WITH(partition,
 if test x$with_partition = xyes; then
     AX_CHECK_PKG_LIB(
 		[cholmod],
-		[cholmod_metis.h],
+		[cholmod.h],
 		[cholmod_metis],,
 		[AC_MSG_ERROR([Could not find a cholmod with metis library])])
 else
