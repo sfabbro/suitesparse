@@ -1,5 +1,6 @@
 AM_CPPFLAGS = -I$(top_srcdir)/Include @SUITESPARSECONFIG_CFLAGS@
 
+LDADD = $(top_builddir)/Source/lib$(PACKAGE_NAME).la
 
 if WITH_AMD
 EXTRA_PROGRAMS = ldlamd ldllamd
@@ -12,10 +13,38 @@ ldllamd_LDADD = $(ldlamd_LDADD)
 endif
 
 check_PROGRAMS = ldlsimple ldllsimple ldlmain ldllmain $(EXTRA_PROGRAMS)
-
-include $(top_srcdir)/config/check.am
-
 ldllsimple_SOURCES = ldlsimple.c
-ldllsimple_CPPFLAGS = -DLDL_LONG
+ldllsimple_CPPFLAGS = $(AM_CPPFLAGS) -DLDL_LONG
 ldllmain_SOURCES = ldlmain.c
-ldllmain_CPPFLAGS = -DLDL_LONG
+ldllmain_CPPFLAGS = $(AM_CPPFLAGS) -DLDL_LONG
+
+ext = .dat
+
+EXTRA_DIST = $(addsuffix $(ext),$(check_PROGRAMS)) ldlamd$(ext) ldllamd$(ext)
+
+
+
+check-local: $(check_PROGRAMS)
+	[ $(top_srcdir) = $(top_builddir) ] || $(LN_S) $(top_srcdir)/Matrix $(top_builddir)/Matrix
+	@for i in $(check_PROGRAMS); do \
+		echo "------------------------" ; \
+		./$$i$(EXEEXT) > my_$$i$(ext); \
+		diff -Bbe -Iversion $(srcdir)/$$i$(ext) my_$$i$(ext) > /dev/null; \
+		if test "x$$?" = "x0"; then \
+			echo "Test $$i PASSED."; \
+		else \
+			echo "** Test $$i FAILED. Diff: "; \
+			diff -Nu $(srcdir)/$$i$(ext) my_$$i$(ext); \
+			doexit="yes"; \
+		fi; \
+	done; \
+	echo "------------------------" ; \
+	if test "x$$doexit" = "xyes"; then \
+		exit 1; \
+	fi
+	[ $(top_srcdir) = $(top_builddir) ] || rm -r $(top_builddir)/Matrix
+
+MAINTAINERCLEANFILES = Makefile.in
+CLEANFILES = my_*$(ext)
+
+

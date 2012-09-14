@@ -9,6 +9,6 @@ DISTCHECK_CONFIGURE_FLAGS = \
 
 SUBDIRS = Source Demo Doc
 
-EXTRA_DIST += MATLAB
+EXTRA_DIST += MATLAB Matrix
 
 include_HEADERS = Include/ldl.h
