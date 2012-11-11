@@ -25,7 +25,6 @@ EXTRA_HEADERS += cholmod_supernodal.h
 endif
 
 noinst_HEADERS = \
-	cholmod_blas.h \
 	cholmod_complexity.h \
 	cholmod_internal.h \
 	cholmod_template.h
@@ -33,6 +32,7 @@ noinst_HEADERS = \
 include_HEADERS = \
 	$(EXTRA_HEADERS) \
 	cholmod.h \
+	cholmod_blas.h \
 	cholmod_config.h \
 	cholmod_core.h \
 	cholmod_io64.h
