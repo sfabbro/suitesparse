@@ -39,12 +39,7 @@ my_%.$(ext): $*
 		doexit="yes"; \
 	fi
 
-TESTS = \
-	umfpack_simple \
-	my_umfpack_di_demo.$(ext) \
-	my_umfpack_dl_demo.$(ext) \
-	my_umfpack_zi_demo.$(ext) \
-	my_umfpack_zl_demo.$(ext)
+TESTS = $(check_PROGRAMS)
 
 umfpack_%_demo.c: umfpack_xx_demo.c umfpack_%_demo.sed
 	$(SED) -f umfpack_$*_demo.sed < umfpack_xx_demo.c > umfpack_$*_demo.c
@@ -68,7 +63,7 @@ umf4zhb_SOURCES = umf4zhb.f umf4_f77zwrapper.c
 umf4hb64_SOURCES = umf4hb64.f umf4_f77wrapper.c umf4_f77zwrapper.c
 umf4hb64_CPPFLAGS = $(AM_CPPFLAGS) -DDLONG
 
-check-am: $(check_PROGRAMS) $(TESTS)
+check-am: $(check_PROGRAMS)
 	$(MKDIR_P) tmp
 	./readhb_nozeros < $(srcdir)/HB/can_24.psa > tmp/A || exit 1
 	./readhb_size    < $(srcdir)/HB/can_24.psa > tmp/Asize || exit 1
