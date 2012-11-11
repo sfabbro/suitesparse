@@ -91,7 +91,7 @@ AC_ARG_ENABLE(expert,
     [AC_HELP_STRING([--disable-expert],
 		    [Compile without the min 2-norm solution option])],
      [enable_expert=$enableval],
-     [enable_expert=yes])xo
+     [enable_expert=yes])
 test x$enable_expert != xyes && AC_DEFINE([NEXPERT], [1], [Do not use expert mode])
 
 AC_ARG_ENABLE(timing,
