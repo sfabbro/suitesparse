@@ -32,7 +32,6 @@ AC_FUNC_REALLOC
 AC_FUNC_STRTOD
 AC_CHECK_FUNCS([atexit localtime_r mblen putenv realpath rpmatch select setenv stime strtol strtoul strtoull tzset])
 
-
 # Checks and automatically links with required system libraries
 AC_CHECK_LIB([m], [sqrt])
 #AC_CHECK_LIB([pthread], [])
@@ -186,11 +185,15 @@ if test x$with_supernodal = xyes; then
 		      [BLAS_PC=blas],
 		      [AX_BLAS([PC_LIBS="$PC_LIBS $BLAS_LIBS"],
 		      	      AC_MSG_ERROR([Cannot find blas libraries]))])
+    AC_ARG_WITH(longblas,
+        [AC_HELP_STRING([--with-longblas=],
+		   [Redefine the long integer for BLAS])],
+	[AC_DEFINE([LONGBLAS], [$withval], [Use long integer for BLAS])])
     PKG_CHECK_MODULES([LAPACK],
     		      [lapack],
 		      [LAPACK_PC=lapack],
 		      [AX_LAPACK([PC_LIBS="$PC_LIBS $LAPACK_LIBS"],
-		      	        AC_MSG_ERROR([Cannot find lapack libraries]))])
+		      	        AC_MSG_ERROR([Cannot find lapack libraries]))])   
 else
     AC_DEFINE([NSUPERNODAL], [1], [Supernodal module is not built])
 fi
@@ -206,6 +209,7 @@ AC_CONFIG_FILES([Check/Makefile
 		 Demo/Makefile		 
                  Doc/Makefile
                  Include/Makefile
+                 Include/cholmod_config.h
 		 MatrixOps/Makefile
 		 Modify/Makefile
 		 Partition/Makefile
