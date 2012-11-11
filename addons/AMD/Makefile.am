@@ -11,5 +11,4 @@ SUBDIRS = Source Demo Doc
 
 EXTRA_DIST += MATLAB
 
-noinst_HEADERS = Include/amd_internal.h
-include_HEADERS = Include/amd.h
+include_HEADERS = Include/amd_internal.h Include/amd.h
