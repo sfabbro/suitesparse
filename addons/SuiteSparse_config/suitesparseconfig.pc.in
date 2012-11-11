@@ -4,7 +4,7 @@ libdir=@libdir@
 includedir=@includedir@
 
 Name: @PACKAGE_NAME@
-Description: http://www.cise.ufl.edu/research/sparse/SuiteSparse_config/
+Description: Common configurations for all packages in SuiteSparse
 Version: @PACKAGE_VERSION@
 URL: http://www.cise.ufl.edu/research/sparse/
 Libs: -L${libdir} -lsuitesparseconfig
