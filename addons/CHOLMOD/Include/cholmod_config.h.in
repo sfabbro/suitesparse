@@ -61,7 +61,7 @@
 /* Define to 1 if you do not include the Partition module. */
 #undef NPARTITION
 
-/* Define to 1 if you do not wan to include any GNU GPL Modules. */
+/* Define to 1 if you do not want to include any GNU GPL Modules. */
 #undef NGPL
 
 /* Define to 1 if you do not include the MatrixOps module. */
