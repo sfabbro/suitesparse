@@ -82,7 +82,7 @@ AC_ARG_WITH(m4_tolower($1)[-libs],
 AS_IF([ test x"$]m4_toupper($1)[_LIBS" = x ],
       [PKG_CHECK_MODULES(m4_toupper($1), 
       			 m4_tolower($1),
-			 m4_toupper($1)[_PC=]m4_tolower($1))])
+			 m4_toupper($1)[_PC=]m4_tolower($1),[])],[])
 
 # define default <PKG>_LIBS if none was set so far
 AS_IF([ test x"$]m4_toupper($1)[_LIBS" = x ],
