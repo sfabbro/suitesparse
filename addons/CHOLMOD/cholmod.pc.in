@@ -11,4 +11,4 @@ Libs: -L${libdir} -lcholmod
 Libs.private: -lm -lrt @PC_LIBS@
 Cflags: -I${includedir}
 Requires: suitesparseconfig
-Requires.private: @BLAS_PC@ @LAPACK_PC@ @CUDA_PC@ @METIS_PC@ @AMD_PC@ @CAMD_PC@ @COLAMD_PC@ @CCOLAMD_PC@
+Requires.private: @BLAS_PC@ @LAPACK_PC@ @CUBLAS_PC@ @METIS_PC@ @AMD_PC@ @CAMD_PC@ @COLAMD_PC@ @CCOLAMD_PC@

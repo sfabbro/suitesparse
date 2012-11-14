@@ -67,11 +67,11 @@ AC_ARG_WITH(cuda,
      [with_cuda=no])
 if test x$with_cuda != xno; then
     AX_CHECK_PKG_LIB(
-		[cuda],
-		[],
-		[cublasSetStream],,
-		[AC_MSG_ERROR([Could not find cuda library])])
-    test x$CUDA_PC = x && PC_LIBS="$PC_LIBS $CUDA_LIBS"
+		[cublas],
+		[cublas_v2.h],
+		[cublasDgemm],,
+		[AC_MSG_ERROR([Could not find cuda blas library])])
+    test x$CUBLAS_PC = x && PC_LIBS="$PC_LIBS $CUBLAS_LIBS"
     AC_DEFINE([GPU_BLAS], [1], [Built with CUDA BLAS acceleration])
 fi
 
