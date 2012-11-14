@@ -24,6 +24,7 @@ if WITH_SUPERNODAL
 EXTRA_HEADERS += cholmod_supernodal.h
 endif
 
+nodist_include_HEADERS = cholmod_config.h
 noinst_HEADERS = \
 	cholmod_complexity.h \
 	cholmod_internal.h \
@@ -33,7 +34,6 @@ include_HEADERS = \
 	$(EXTRA_HEADERS) \
 	cholmod.h \
 	cholmod_blas.h \
-	cholmod_config.h \
 	cholmod_core.h \
 	cholmod_io64.h
 
