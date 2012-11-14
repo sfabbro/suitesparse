@@ -52,20 +52,35 @@
 /* Use the compiler flag, or uncomment the definition(s), if you want to use
  * one or more non-default installation options: */
 
+/* Define to 1 if you do not include the Check module. */
 #undef NCHECK
+
+/* Define to 1 if you do not include the Cholesky module. */
 #undef NCHOLESKY
+
+/* Define to 1 if you do not include the Partition module. */
 #undef NPARTITION
 
-#undef NGPL  
+/* Define to 1 if you do not wan to include any GNU GPL Modules. */
+#undef NGPL
+
+/* Define to 1 if you do not include the MatrixOps module. */
 #undef NMATRIXOPS
+
+/* Define to 1 if you do not include the Modify module. */
 #undef NMODIFY
+
+/* Define to 1 if you do not include the Supernodal module. */
 #undef NSUPERNODAL
 
+/* Define to 1 if you do not want to print anything. */
 #undef NPRINT
 
+/* Set the integer used by LAPACK and BLAS. */
 #undef LONGBLAS
-#undef NSUNPERF
 
+/* Define to 1 if you do not use the Sun Performance Library (Solaris). */
+#undef NSUNPERF
 
 /* -------------------------------------------------------------------------- */
 /* if NGPL is defined, disable all GNU GPL Modules */

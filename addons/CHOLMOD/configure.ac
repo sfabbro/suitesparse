@@ -1,7 +1,7 @@
 AC_INIT([cholmod], [2.0.1], [davis@cise.ufl.edu])
 
 AC_CONFIG_SRCDIR([Core/cholmod_aat.c])
-AC_CONFIG_HEADERS([config.h])
+AC_CONFIG_HEADERS([config.h Include/cholmod_config.h])
 AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_AUX_DIR([config])
 
@@ -209,7 +209,6 @@ AC_CONFIG_FILES([Check/Makefile
 		 Demo/Makefile		 
                  Doc/Makefile
                  Include/Makefile
-                 Include/cholmod_config.h
 		 MatrixOps/Makefile
 		 Modify/Makefile
 		 Partition/Makefile
