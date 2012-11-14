@@ -1,4 +1,4 @@
-AM_CPPFLAGS = -I$(top_srcdir)/Include @SUITESPARSECONFIG_CFLAGS@
+AM_CPPFLAGS = -I$(top_srcdir)/Include @SUITESPARSECONFIG_CFLAGS@ @CUBLAS_CFLAGS@
 
 noinst_LTLIBRARIES = libcore.la libcorel.la
 noinst_HEADERS = \

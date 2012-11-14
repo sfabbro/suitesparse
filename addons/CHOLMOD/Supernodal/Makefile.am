@@ -1,4 +1,4 @@
-AM_CPPFLAGS = -I$(top_srcdir)/Include @SUITESPARSECONFIG_CFLAGS@
+AM_CPPFLAGS = -I$(top_srcdir)/Include @SUITESPARSECONFIG_CFLAGS@ 
 
 noinst_LTLIBRARIES = libsupernodal.la libsupernodall.la
 noinst_HEADERS = \
@@ -10,7 +10,7 @@ libsupernodal_la_SOURCES = \
 	cholmod_super_numeric.c \
 	cholmod_super_solve.c \
 	cholmod_super_symbolic.c
-libsupernodal_la_LIBADD = @BLAS_LIBS@ @LAPACK_LIBS@
+libsupernodal_la_LIBADD = @BLAS_LIBS@ @LAPACK_LIBS@ @CUBLAS_LIBS@
 
 libsupernodall_la_CPPFLAGS = $(AM_CPPFLAGS) -DDLONG
 libsupernodall_la_SOURCES = $(libsupernodal_la_SOURCES)
