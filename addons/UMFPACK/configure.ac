@@ -81,6 +81,8 @@ else
 fi
 AM_CONDITIONAL([ENABLE_FORTRAN_TEST], [test x$enable_fortran_test = xyes])
 
+AC_SUBST([PC_LIBS])
+AC_SUBST([BLAS_PC])
 
 AC_CONFIG_FILES([Demo/Makefile
                  Doc/Makefile

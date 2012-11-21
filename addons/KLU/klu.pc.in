@@ -8,7 +8,7 @@ Description: Sparse LU factorization algorithm
 Version: @PACKAGE_VERSION@
 URL: http://www.cise.ufl.edu/research/sparse/klu/
 Libs: -L${libdir} -lklu
-Libs.private: -lm @PC_LIBS@
+Libs.private: -lm
 Cflags: -I${includedir}
 Requires: suitesparseconfig
 Requires.private: @AMD_PC@ @COLAMD_PC@ @BTF_PC@

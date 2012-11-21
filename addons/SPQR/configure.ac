@@ -39,6 +39,8 @@ AX_CHECK_PKG_LIB(
 
 AC_PROG_F77
 AC_F77_LIBRARY_LDFLAGS
+
+PC_LIBS=
 PKG_CHECK_MODULES([BLAS],
     		  [blas],
 		  [BLAS_PC=blas],
@@ -110,6 +112,10 @@ if test x$enable_timing != xno; then
 fi
 
 AC_SUBST([EXTRA_CPPFLAGS])    
+AC_SUBST([BLAS_PC])
+AC_SUBST([LAPACK_PC])
+AC_SUBST([PC_LIBS])
+AC_SUBST([TBB_PC])
 
 AC_CONFIG_FILES([Demo/Makefile		 
                  Doc/Makefile
