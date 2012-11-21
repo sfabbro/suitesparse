@@ -2,6 +2,7 @@ AM_CPPFLAGS = -I$(top_srcdir)/Include \
 	@SUITESPARSECONFIG_CFLAGS@ @AMD_CFLAGS@ @CHOLMOD_CFLAGS@
 
 noinst_HEADERS = \
+	cholmod_blas.h \
 	umf_analyze.h \
 	umf_apply_order.h \
 	umf_assemble.h \

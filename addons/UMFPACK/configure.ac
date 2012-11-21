@@ -56,13 +56,15 @@ AC_ARG_WITH(cholmod,
 if test x$with_cholmod = xyes; then
     AX_CHECK_PKG_LIB(
 		[cholmod],
-		[cholmod_partition.h],
-		[cholmod_metis],,
-		[AC_MSG_ERROR([Could not find a cholmod with metis library])])
+		[cholmod.h],
+		[cholmod_analyze],,
+		[AC_MSG_ERROR([Could not find the cholmod library])])
 else
     AC_DEFINE([NCHOLMOD], [1], [cholmod bindings are not built])
+    # stupid trick to avoid patching umf_cholmod.c to include config.h
+    CHOLMOD_CFLAGS="-DNCHOLMOD=1"
+    AC_SUBST([CHOLMOD_CFLAGS])
 fi
-
 
 # Optional fortran tests
 AC_MSG_CHECKING([whether to enable fortran tests])
