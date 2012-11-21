@@ -37,12 +37,6 @@ AX_CHECK_PKG_LIB(
 	[SuiteSparse_malloc],,
 	[AC_MSG_ERROR([Could not find suitesparseconfig library])])
 
-AX_CHECK_PKG_LIB(
-	[cholmod],
-	[cholmod_blas.h],
-	[cholmod_l_free],,
-	[AC_MSG_ERROR([Could not find cholmod with blas library])])
-
 AC_PROG_F77
 AC_F77_LIBRARY_LDFLAGS
 PKG_CHECK_MODULES([BLAS],
@@ -57,6 +51,8 @@ PKG_CHECK_MODULES([LAPACK],
 		  [AX_LAPACK([PC_LIBS="$PC_LIBS $LAPACK_LIBS"],
 		      	      AC_MSG_ERROR([Cannot find lapack libraries]))])
 
+# EXTRA_CPPFLAGS is a stupid trick to avoid modifying source files to include config.h
+EXTRA_CPPFLAGS=""
 AC_ARG_WITH(partition, 
     [AC_HELP_STRING([--without-partition],
 		    [Do not include the Partition module])],
@@ -69,9 +65,14 @@ if test x$with_partition = xyes; then
 		[cholmod_metis],,
 		[AC_MSG_ERROR([Could not find a cholmod with metis library])])
 else
+    AX_CHECK_PKG_LIB(
+	[cholmod],
+	[cholmod_blas.h],
+	[cholmod_l_free],,
+	[AC_MSG_ERROR([Could not find cholmod with blas library])])
     AC_DEFINE([NPARTITION], [1], [Partition module is not built])
+    EXTRA_CPPFLAGS="$EXTRA_CPPFLAGS -DNPARTITION=1"
 fi
-AM_CONDITIONAL([WITH_PARTITION], [test x$with_partition = xyes])
 
 AC_ARG_WITH(tbb,
     [AC_HELP_STRING([--with-tbb],
@@ -85,6 +86,7 @@ if test x$with_tbb = xyes; then
 		  [AC_MSG_ERROR([Cannot find tbb libraries])])
     test x$TBB_PC = x && PC_LIBS="$PC_LIBS $TBB_LIBS"
     AC_DEFINE([HAVE_TBB], [1], [Use Intel Threading Building Block for multithreading])
+    EXTRA_CPPFLAGS="$EXTRA_CPPFLAGS -DHAVE_TBB=1"
 fi
 
 AC_ARG_ENABLE(expert,
@@ -92,14 +94,22 @@ AC_ARG_ENABLE(expert,
 		    [Compile without the min 2-norm solution option])],
      [enable_expert=$enableval],
      [enable_expert=yes])
-test x$enable_expert != xyes && AC_DEFINE([NEXPERT], [1], [Do not use expert mode])
+if test x$enable_expert != xyes; then
+   AC_DEFINE([NEXPERT], [1], [Do not use expert mode])
+   EXTRA_CPPFLAGS="$EXTRA_CPPFLAGS -DNEXPERT=1"
+fi
 
 AC_ARG_ENABLE(timing,
     [AC_HELP_STRING([--enable-timing],
 		    [Compile with timing and exact flop counts enabled])],
      [enable_timing=$enableval],
      [enable_timing=no])
-test x$enable_timing != xno && AC_DEFINE([TIMING], [1], [Timing and exact flop counts enabled])
+if test x$enable_timing != xno; then
+   AC_DEFINE([TIMING], [1], [Timing and exact flop counts enabled])
+   EXTRA_CPPFLAGS="$EXTRA_CPPFLAGS -DTIMING=1"
+fi
+
+AC_SUBST([EXTRA_CPPFLAGS])    
 
 AC_CONFIG_FILES([Demo/Makefile		 
                  Doc/Makefile

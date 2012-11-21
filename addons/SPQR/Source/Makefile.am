@@ -1,4 +1,4 @@
-AM_CPPFLAGS=-I$(top_srcdir)/Include @TBB_CFLAGS@ @CHOLMOD_CFLAGS@
+AM_CPPFLAGS=-I$(top_srcdir)/Include @EXTRA_CPPFLAGS@ @TBB_CFLAGS@ @CHOLMOD_CFLAGS@
 
 lib_LTLIBRARIES = libspqr.la
 
