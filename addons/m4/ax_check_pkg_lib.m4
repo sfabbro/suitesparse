@@ -104,7 +104,8 @@ AC_CACHE_VAL(AS_TR_SH([ax_cv_has_]m4_tolower($1)),
 		[AC_CHECK_LIB(m4_tolower($1),
 			      [$ax_cv_symbol],
 			      [AS_TR_SH([ax_cv_has_]m4_tolower($1))=yes],
-         		      [AS_TR_SH([ax_cv_has_]m4_tolower($1))=no])],
+			      [AS_TR_SH([ax_cv_has_]m4_tolower($1))=no],
+			       $LDFLAGS)],
 		[AS_TR_SH([ax_cv_has_]m4_tolower($1))=no])
 	      CPPFLAGS="$save_CPPFLAGS"
 	      LDFLAGS="$save_LDFLAGS"])
