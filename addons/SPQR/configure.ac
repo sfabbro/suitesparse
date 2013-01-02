@@ -59,7 +59,7 @@ AC_ARG_WITH(partition,
     [AC_HELP_STRING([--without-partition],
 		    [Do not include the Partition module])],
      [with_partition=$withval],
-     [with_partition=yes])
+     [with_partition=no])
 if test x$with_partition = xyes; then
     AX_CHECK_PKG_LIB(
 		[cholmod],
