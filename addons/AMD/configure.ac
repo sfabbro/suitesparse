@@ -39,7 +39,7 @@ AC_ARG_ENABLE([fortran],
     [enable_fortran=no])
 if test x"$enable_fortran" = xyes ; then
    AC_MSG_RESULT([yes])
-   LT_LANG([Fortran 77]),
+   LT_LANG([Fortran 77])
 else
     AC_MSG_RESULT([no])
 fi
