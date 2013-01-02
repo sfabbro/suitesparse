@@ -30,14 +30,13 @@ EXTRA_DIST = \
 my_%.$(ext): $*
 	echo "------------------------" ; \
 	./$*$(EXEEXT) > my_$*.$(ext); \
-	diff -Bbe -I"UMFPACK V" $(srcdir)/$*.$(ext) my_$*.$(ext) > /dev/null; \
 	if test "x$$?" = "x0"; then \
 		echo "Test $$i PASSED."; \
 	else \
 		echo "** Test $$i FAILED. Diff: "; \
-		diff -Nu $(srcdir)/$*.$(ext) my_$*.$(ext); \
 		doexit="yes"; \
 	fi
+	diff -Nu $(srcdir)/$*.$(ext) my_$*.$(ext); 
 
 TESTS = $(check_PROGRAMS)
 

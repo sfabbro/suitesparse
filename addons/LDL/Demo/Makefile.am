@@ -20,23 +20,22 @@ ldllmain_CPPFLAGS = $(AM_CPPFLAGS) -DLDL_LONG
 
 ext = .dat
 
-EXTRA_DIST = $(addsuffix $(ext),$(check_PROGRAMS)) ldlamd$(ext) ldllamd$(ext)
+EXTRA_DIST = $(addsuffix $(ext),$(basename $(check_PROGRAMS))) ldlamd$(ext) ldllamd$(ext)
 
 
 
 check-local: $(check_PROGRAMS)
 	[ $(top_srcdir) = $(top_builddir) ] || $(LN_S) $(top_srcdir)/Matrix $(top_builddir)/Matrix
-	@for i in $(check_PROGRAMS); do \
+	@for i in $(basename $(check_PROGRAMS)); do \
 		echo "------------------------" ; \
 		./$$i$(EXEEXT) > my_$$i$(ext); \
-		diff -Bbe -Iversion $(srcdir)/$$i$(ext) my_$$i$(ext) > /dev/null; \
 		if test "x$$?" = "x0"; then \
 			echo "Test $$i PASSED."; \
 		else \
 			echo "** Test $$i FAILED. Diff: "; \
-			diff -Nu $(srcdir)/$$i$(ext) my_$$i$(ext); \
 			doexit="yes"; \
 		fi; \
+		diff -Nu $(srcdir)/$$i$(ext) my_$$i$(ext); \
 	done; \
 	echo "------------------------" ; \
 	if test "x$$doexit" = "xyes"; then \
