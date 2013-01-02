@@ -1,6 +1,6 @@
 AC_INIT([cholmod], [2.0.1], [davis@cise.ufl.edu])
 
-AC_CONFIG_SRCDIR([Core/cholmod_aat.c])
+AC_CONFIG_SRCDIR([Cored/cholmod_aat.c])
 AC_CONFIG_HEADERS([config.h Include/cholmod_config.h])
 AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_AUX_DIR([config])
@@ -144,7 +144,7 @@ AC_ARG_WITH(partition,
     [AC_HELP_STRING([--without-partition],
 		    [Do not include the Partition module])],
      [with_partition=$withval],
-     [with_partition=yes])
+     [with_partition=no])
 if test x$with_partition = xyes; then
     AX_CHECK_PKG_LIB(
 		[metis],
@@ -205,7 +205,7 @@ AC_SUBST([PC_LIBS])
 
 AC_CONFIG_FILES([Check/Makefile
 		 Cholesky/Makefile
-		 Core/Makefile
+		 Cored/Makefile
 		 Demo/Makefile		 
                  Doc/Makefile
                  Include/Makefile

@@ -57,10 +57,10 @@ endif
 
 lib_LTLIBRARIES = libcholmod.la
 
-SUBDIRS = Core Include $(EXTRA_SUBDIRS) Demo Doc
+SUBDIRS = Cored Include $(EXTRA_SUBDIRS) Demo Doc
 
 libcholmod_la_SOURCES = 
 libcholmod_la_LIBADD = \
 	$(EXTRA_LIBADD) \
-	$(top_builddir)/Core/libcore.la \
-	$(top_builddir)/Core/libcorel.la
+	$(top_builddir)/Cored/libcore.la \
+	$(top_builddir)/Cored/libcorel.la
