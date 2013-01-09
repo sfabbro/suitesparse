@@ -5,6 +5,6 @@ include $(top_srcdir)/config/common.am
 
 SUBDIRS = Source Demo Doc
 
-EXTRA_DIST += MATLAB
+EXTRA_DIST += MATLAB Matrix
 
 include_HEADERS = Include/cs.h
