@@ -121,153 +121,153 @@ GN = $(addsuffix .lo, $(subst umfpack_,umfpack_gn_,$(GENERIC)))
 #-------------------------------------------------------------------------------
 
 umf_i_%.lo: umf_%.c $(noinst_HEADERS)
-	$(LTCOMPILE) -DDINT -c $< -o $@
+	$(AM_V_CC)$(LTCOMPILE) -DDINT -c $< -o $@
 
 umf_l_%.lo: umf_%.c $(noinst_HEADERS)
-	$(LTCOMPILE) -DDLONG -c $< -o $@
+	$(AM_V_CC)$(LTCOMPILE) -DDLONG -c $< -o $@
 
 #-------------------------------------------------------------------------------
 # compile each routine in the DI version
 #-------------------------------------------------------------------------------
 
 umf_di_%.lo: umf_%.c $(noinst_HEADERS)
-	$(LTCOMPILE) -DDINT -c $< -o $@
+	$(AM_V_CC)$(LTCOMPILE) -DDINT -c $< -o $@
 
 umf_di_%hsolve.lo: umf_%tsolve.c $(noinst_HEADERS)
-	$(LTCOMPILE) -DDINT -DCONJUGATE_SOLVE -c $< -o $@
+	$(AM_V_CC)$(LTCOMPILE) -DDINT -DCONJUGATE_SOLVE -c $< -o $@
 
 umf_di_triplet_map_x.lo: umf_triplet.c $(noinst_HEADERS)
-	$(LTCOMPILE) -DDINT -DDO_MAP -DDO_VALUES -c $< -o $@
+	$(AM_V_CC)$(LTCOMPILE) -DDINT -DDO_MAP -DDO_VALUES -c $< -o $@
 
 umf_di_triplet_map_nox.lo: umf_triplet.c $(noinst_HEADERS)
-	$(LTCOMPILE) -DDINT -DDO_MAP -c $< -o $@
+	$(AM_V_CC)$(LTCOMPILE) -DDINT -DDO_MAP -c $< -o $@
 
 umf_di_triplet_nomap_x.lo: umf_triplet.c $(noinst_HEADERS)
-	$(LTCOMPILE) -DDINT -DDO_VALUES -c $< -o $@
+	$(AM_V_CC)$(LTCOMPILE) -DDINT -DDO_VALUES -c $< -o $@
 
 umf_di_triplet_nomap_nox.lo: umf_triplet.c $(noinst_HEADERS)
-	$(LTCOMPILE) -DDINT -c $< -o $@
+	$(AM_V_CC)$(LTCOMPILE) -DDINT -c $< -o $@
 
 umf_di_assemble_fixq.lo: umf_assemble.c $(noinst_HEADERS)
-	$(LTCOMPILE) -DDINT -DFIXQ -c $< -o $@
+	$(AM_V_CC)$(LTCOMPILE) -DDINT -DFIXQ -c $< -o $@
 
 umf_di_store_lu_drop.lo: umf_store_lu.c $(noinst_HEADERS)
-	$(LTCOMPILE) -DDINT -DDROP -c $< -o $@
+	$(AM_V_CC)$(LTCOMPILE) -DDINT -DDROP -c $< -o $@
 
 umfpack_di_wsolve.lo: umfpack_solve.c $(noinst_HEADERS)
-	$(LTCOMPILE) -DDINT -DWSOLVE -c $< -o $@
+	$(AM_V_CC)$(LTCOMPILE) -DDINT -DWSOLVE -c $< -o $@
 
 umfpack_di_%.lo: umfpack_%.c $(noinst_HEADERS)
-	$(LTCOMPILE) -DDINT -c $< -o $@
+	$(AM_V_CC)$(LTCOMPILE) -DDINT -c $< -o $@
 
 #-------------------------------------------------------------------------------
 # compile each routine in the DL version
 #-------------------------------------------------------------------------------
 
 umf_dl_%.lo: umf_%.c $(noinst_HEADERS)
-	$(LTCOMPILE) -DDLONG -c $< -o $@
+	$(AM_V_CC)$(LTCOMPILE) -DDLONG -c $< -o $@
 
 umf_dl_%hsolve.lo: umf_%tsolve.c $(noinst_HEADERS)
-	$(LTCOMPILE) -DDLONG -DCONJUGATE_SOLVE -c $< -o $@
+	$(AM_V_CC)$(LTCOMPILE) -DDLONG -DCONJUGATE_SOLVE -c $< -o $@
 
 umf_dl_triplet_map_x.lo: umf_triplet.c $(noinst_HEADERS)
-	$(LTCOMPILE) -DDLONG -DDO_MAP -DDO_VALUES -c $< -o $@
+	$(AM_V_CC)$(LTCOMPILE) -DDLONG -DDO_MAP -DDO_VALUES -c $< -o $@
 
 umf_dl_triplet_map_nox.lo: umf_triplet.c $(noinst_HEADERS)
-	$(LTCOMPILE) -DDLONG -DDO_MAP -c $< -o $@
+	$(AM_V_CC)$(LTCOMPILE) -DDLONG -DDO_MAP -c $< -o $@
 
 umf_dl_triplet_nomap_x.lo: umf_triplet.c $(noinst_HEADERS)
-	$(LTCOMPILE) -DDLONG -DDO_VALUES -c $< -o $@
+	$(AM_V_CC)$(LTCOMPILE) -DDLONG -DDO_VALUES -c $< -o $@
 
 umf_dl_triplet_nomap_nox.lo: umf_triplet.c $(noinst_HEADERS)
-	$(LTCOMPILE) -DDLONG -c $< -o $@
+	$(AM_V_CC)$(LTCOMPILE) -DDLONG -c $< -o $@
 
 umf_dl_assemble_fixq.lo: umf_assemble.c $(noinst_HEADERS)
-	$(LTCOMPILE) -DDLONG -DFIXQ -c $< -o $@
+	$(AM_V_CC)$(LTCOMPILE) -DDLONG -DFIXQ -c $< -o $@
 
 umf_dl_store_lu_drop.lo: umf_store_lu.c $(noinst_HEADERS)
-	$(LTCOMPILE) -DDLONG -DDROP -c $< -o $@
+	$(AM_V_CC)$(LTCOMPILE) -DDLONG -DDROP -c $< -o $@
 
 umfpack_dl_wsolve.lo: umfpack_solve.c $(noinst_HEADERS)
-	$(LTCOMPILE) -DDLONG -DWSOLVE -c $< -o $@
+	$(AM_V_CC)$(LTCOMPILE) -DDLONG -DWSOLVE -c $< -o $@
 
 umfpack_dl_%.lo: umfpack_%.c $(noinst_HEADERS)
-	$(LTCOMPILE) -DDLONG -c $< -o $@
+	$(AM_V_CC)$(LTCOMPILE) -DDLONG -c $< -o $@
 
 #-------------------------------------------------------------------------------
 # compile each routine in the ZI version
 #-------------------------------------------------------------------------------
 
 umf_zi_%.lo: umf_%.c $(noinst_HEADERS)
-	$(LTCOMPILE) -DZINT -c $< -o $@
+	$(AM_V_CC)$(LTCOMPILE) -DZINT -c $< -o $@
 
 umf_zi_%hsolve.lo: umf_%tsolve.c $(noinst_HEADERS)
-	$(LTCOMPILE) -DZINT -DCONJUGATE_SOLVE -c $< -o $@
+	$(AM_V_CC)$(LTCOMPILE) -DZINT -DCONJUGATE_SOLVE -c $< -o $@
 
 umf_zi_triplet_map_x.lo: umf_triplet.c $(noinst_HEADERS)
-	$(LTCOMPILE) -DZINT -DDO_MAP -DDO_VALUES -c $< -o $@
+	$(AM_V_CC)$(LTCOMPILE) -DZINT -DDO_MAP -DDO_VALUES -c $< -o $@
 
 umf_zi_triplet_map_nox.lo: umf_triplet.c $(noinst_HEADERS)
-	$(LTCOMPILE) -DZINT -DDO_MAP -c $< -o $@
+	$(AM_V_CC)$(LTCOMPILE) -DZINT -DDO_MAP -c $< -o $@
 
 umf_zi_triplet_nomap_x.lo: umf_triplet.c $(noinst_HEADERS)
-	$(LTCOMPILE) -DZINT -DDO_VALUES -c $< -o $@
+	$(AM_V_CC)$(LTCOMPILE) -DZINT -DDO_VALUES -c $< -o $@
 
 umf_zi_triplet_nomap_nox.lo: umf_triplet.c $(noinst_HEADERS)
-	$(LTCOMPILE) -DZINT -c $< -o $@
+	$(AM_V_CC)$(LTCOMPILE) -DZINT -c $< -o $@
 
 umf_zi_assemble_fixq.lo: umf_assemble.c $(noinst_HEADERS)
-	$(LTCOMPILE) -DZINT -DFIXQ -c $< -o $@
+	$(AM_V_CC)$(LTCOMPILE) -DZINT -DFIXQ -c $< -o $@
 
 umf_zi_store_lu_drop.lo: umf_store_lu.c $(noinst_HEADERS)
-	$(LTCOMPILE) -DZINT -DDROP -c $< -o $@
+	$(AM_V_CC)$(LTCOMPILE) -DZINT -DDROP -c $< -o $@
 
 umfpack_zi_wsolve.lo: umfpack_solve.c $(noinst_HEADERS)
-	$(LTCOMPILE) -DZINT -DWSOLVE -c $< -o $@
+	$(AM_V_CC)$(LTCOMPILE) -DZINT -DWSOLVE -c $< -o $@
 
 umfpack_zi_%.lo: umfpack_%.c $(noinst_HEADERS)
-	$(LTCOMPILE) -DZINT -c $< -o $@
+	$(AM_V_CC)$(LTCOMPILE) -DZINT -c $< -o $@
 
 #-------------------------------------------------------------------------------
 # compile each routine in the ZL version
 #-------------------------------------------------------------------------------
 
 umf_zl_%.lo: umf_%.c $(noinst_HEADERS)
-	$(LTCOMPILE) -DZLONG -c $< -o $@
+	$(AM_V_CC)$(LTCOMPILE) -DZLONG -c $< -o $@
 
 umf_zl_%hsolve.lo: umf_%tsolve.c $(noinst_HEADERS)
-	$(LTCOMPILE) -DZLONG -DCONJUGATE_SOLVE -c $< -o $@
+	$(AM_V_CC)$(LTCOMPILE) -DZLONG -DCONJUGATE_SOLVE -c $< -o $@
 
 umf_zl_triplet_map_x.lo: umf_triplet.c $(noinst_HEADERS)
-	$(LTCOMPILE) -DZLONG -DDO_MAP -DDO_VALUES -c $< -o $@
+	$(AM_V_CC)$(LTCOMPILE) -DZLONG -DDO_MAP -DDO_VALUES -c $< -o $@
 
 umf_zl_triplet_map_nox.lo: umf_triplet.c $(noinst_HEADERS)
-	$(LTCOMPILE) -DZLONG -DDO_MAP -c $< -o $@
+	$(AM_V_CC)$(LTCOMPILE) -DZLONG -DDO_MAP -c $< -o $@
 
 umf_zl_triplet_nomap_x.lo: umf_triplet.c $(noinst_HEADERS)
-	$(LTCOMPILE) -DZLONG -DDO_VALUES -c $< -o $@
+	$(AM_V_CC)$(LTCOMPILE) -DZLONG -DDO_VALUES -c $< -o $@
 
 umf_zl_triplet_nomap_nox.lo: umf_triplet.c $(noinst_HEADERS)
-	$(LTCOMPILE) -DZLONG -c $< -o $@
+	$(AM_V_CC)$(LTCOMPILE) -DZLONG -c $< -o $@
 
 umf_zl_assemble_fixq.lo: umf_assemble.c $(noinst_HEADERS)
-	$(LTCOMPILE) -DZLONG -DFIXQ -c $< -o $@
+	$(AM_V_CC)$(LTCOMPILE) -DZLONG -DFIXQ -c $< -o $@
 
 umf_zl_store_lu_drop.lo: umf_store_lu.c $(noinst_HEADERS)
-	$(LTCOMPILE) -DZLONG -DDROP -c $< -o $@
+	$(AM_V_CC)$(LTCOMPILE) -DZLONG -DDROP -c $< -o $@
 
 umfpack_zl_wsolve.lo: umfpack_solve.c $(noinst_HEADERS)
-	$(LTCOMPILE) -DZLONG -DWSOLVE -c $< -o $@
+	$(AM_V_CC)$(LTCOMPILE) -DZLONG -DWSOLVE -c $< -o $@
 
 umfpack_zl_%.lo: umfpack_%.c $(noinst_HEADERS)
-	$(LTCOMPILE) -DZLONG -c $< -o $@
+	$(AM_V_CC)$(LTCOMPILE) -DZLONG -c $< -o $@
 
 #-------------------------------------------------------------------------------
 # Create the generic routines (GN) using a generic rule
 #-------------------------------------------------------------------------------
 
 umfpack_gn_%.lo: umfpack_%.c $(noinst_HEADERS)
-	$(LTCOMPILE) -c $< -o $@
+	$(AM_V_CC)$(LTCOMPILE) -c $< -o $@
 
 lib_LTLIBRARIES = libumfpack.la
 

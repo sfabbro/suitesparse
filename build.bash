@@ -37,7 +37,7 @@ build_suitesparse_pkg() {
     # configure, build, test, and package
     autoreconf -vi && \
 	PKG_CONFIG_PATH="${PREFIX}/lib/pkgconfig:$PKG_CONFIG_PATH" \
-	./configure && make distcheck
+	./configure && make distcheck PKG_CONFIG_PATH="${PREFIX}/lib/pkgconfig:$PKG_CONFIG_PATH"
 
     # cleanup
     if [[ $? -eq 0 ]]; then
