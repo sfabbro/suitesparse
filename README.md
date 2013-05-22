@@ -5,19 +5,41 @@ SuiteSparse with autotools
 This is a repackaging of the SuiteSparse library using modern
 autotools and some other minor changes, mostly to satisfy Linux
 distributions QA, but also usability and robustness.
+
 What is done:
-* autotoolization (./configure && make install)
-* use pkg-config for dependencies
 
-To build the various SuiteSparse libraries, the build.bash script will
-fetch the latest suitesparse, build, run unit test, check all files
-are built and installed properly and finally make a tar ball with
-proper version in the distfiles directory. 
+* add configure.ac, Makefile.am, m4 macros, pkg-config files
+* a few tricks to avoid conflicting files during tests
 
-Example:
+What you get:
 
- > ./build.bash AMD	# make a tar ball for latest included AMD
+The usual configure/make/make install goodies:
+* no need to edit makefile's, options are passed with the configure script
+* build shared libraries with "./configure --enable-shared", leave
+  static libraries without PIC
+* test the package with "make check"
+* cross-compiling, parallel building with "make -j<ncpu>"
+* easy to package for Linux distributors
 
-or
+And all the proper compiling and linking flags of suitesparse packages with pkg-config:
+    Ex: pkg-config --libs cholmod
 
- > ./build.bash ALL     # build all SuiteSparse packages in order
+The C source code is left unmodified.
+
+To build the tar balls, see INSTALL.md. Fetch the resulting tar balls
+from the Downloads link below.
+
+Resources
+---------
+
+SuiteSparse web site:
+    http://www.cise.ufl.edu/research/sparse/SuiteSparse/
+
+Downloads:
+    http://dev.gentoo.org/~bicatali/distfiles/
+
+Git repository:
+    https://github.com/sfabbro/suitesparse
+
+Bug reports:
+    https://github.com/sfabbro/suitesparse/issues
