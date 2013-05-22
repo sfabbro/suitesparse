@@ -11,6 +11,14 @@ fi
 
 build_suitesparse_pkg() {
     local lib=$1 i
+
+    # remove old
+    if [[ -d SuiteSparse ]];  then
+	chmod -R 755 SuiteSparse
+	rm -rf SuiteSparse
+    fi
+    tar xf SuiteSparse.tar.gz
+
     # backup all Makefile's
     for i in $(find SuiteSparse/${lib} -name Makefile); do
 	[ -e ${i}.orig ] || mv ${i} ${i}.orig
