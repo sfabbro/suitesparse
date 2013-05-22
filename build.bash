@@ -56,8 +56,8 @@ build_suitesparse_pkg() {
     popd > /dev/null
 
     # now install and save generated tar ball
-    local tb=$(find SuiteSparse/${lib} -name \*-${version}.tar.gz)
-    local src=$(basename ${tb} .tar.gz)
+    local tb=$(find SuiteSparse/${lib} -name \*-${version}.tar.bz2)
+    local src=$(basename ${tb} .tar.bz2)
     tar xf ${tb} && \
 	mkdir ${lib}_build && \
 	pushd ${lib}_build && \

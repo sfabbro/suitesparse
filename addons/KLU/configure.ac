@@ -5,7 +5,7 @@ AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_AUX_DIR([config])
 
-AM_INIT_AUTOMAKE([dist-bzip2 foreign])
+AM_INIT_AUTOMAKE([no-dist-gzip dist-bzip2 foreign])
 
 # use silent rules if available - automake 1.11
 m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES(yes)])
