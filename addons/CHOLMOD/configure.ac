@@ -1,4 +1,4 @@
-AC_INIT([cholmod], [2.0.1], [davis@cise.ufl.edu])
+AC_INIT([cholmod], [2.1.2], [davis@cise.ufl.edu])
 
 AC_CONFIG_SRCDIR([Cored/cholmod_aat.c])
 AC_CONFIG_HEADERS([config.h Include/cholmod_config.h])
@@ -142,22 +142,21 @@ AC_ARG_WITH(modify,
 test x$with_modify = xyes || AC_DEFINE([NMODIFY], [1], [Modify module is not built])
 AM_CONDITIONAL([WITH_MODIFY], [test x$with_modify = xyes])
 
-# Optional Partition module (needs CCOLAMD, CAMD, METIS)
-AC_ARG_WITH(partition, 
-    [AC_HELP_STRING([--without-partition],
-		    [Do not include the Partition module])],
+AC_ARG_WITH(partition,
+    [AC_HELP_STRING([--with-partition],
+		    [Include the Partition module])],
      [with_partition=$withval],
      [with_partition=no])
-if test x$with_partition = xyes; then
-    AX_CHECK_PKG_LIB(
-		[metis],
-		[metis.h],
-		[METIS_NodeND],,
-		[AC_MSG_ERROR([Could not find metis library])])
-    test x$METIS_PC = x && PC_LIBS="$PC_LIBS $METIS_LIBS"
 
-    AX_CHECK_PKG_LIB(
-		[ccolamd],
+AC_ARG_WITH(camd, 
+    [AC_HELP_STRING([--without-camd],
+		    [Do not use CAMD from the Partition module])],
+     [with_camd=$withval],
+     [with_camd=yes])
+
+if test x$with_camd = xyes; then
+     AX_CHECK_PKG_LIB(
+     		[ccolamd],
 		[ccolamd.h],
 		[ccolamd_report],,
 		[AC_MSG_ERROR([Could not find ccolamd library])])
@@ -169,10 +168,24 @@ if test x$with_partition = xyes; then
 		[camd_info],,
 		[AC_MSG_ERROR([Could not find colamd library])])
     test x$CAMD_PC = x && PC_LIBS="$PC_LIBS $CAMD_LIBS"
+
+    if test x$with_partition = xyes; then
+     # Optional Partition module (needs CCOLAMD, CAMD and/or METIS)
+       AX_CHECK_PKG_LIB(
+		[metis],
+		[metis.h],
+		[METIS_NodeND],,
+		[AC_MSG_ERROR([Could not find metis library])])
+       test x$METIS_PC = x && PC_LIBS="$PC_LIBS $METIS_LIBS"
+    else
+       AC_DEFINE([NPARTITION], [1], [Partition module is not built])
+    fi
 else
+    AC_DEFINE([NCAMD], [1], [CAMD/CCOLAMD is not used])
     AC_DEFINE([NPARTITION], [1], [Partition module is not built])
 fi
-AM_CONDITIONAL([WITH_PARTITION], [test x$with_partition = xyes])
+
+AM_CONDITIONAL([WITH_PARTITION], [test x$with_partition = xyes && test x$with_camd = xyes])
 
 # Optional Supernodal module (needs BLAS and LAPACK)
 AC_ARG_WITH(supernodal,

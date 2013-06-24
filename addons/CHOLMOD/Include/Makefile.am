@@ -34,6 +34,7 @@ include_HEADERS = \
 	$(EXTRA_HEADERS) \
 	cholmod.h \
 	cholmod_blas.h \
+	cholmod_camd.h \
 	cholmod_core.h \
 	cholmod_io64.h
 

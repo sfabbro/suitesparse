@@ -21,7 +21,8 @@ libcore_la_SOURCES = \
 	cholmod_memory.c \
 	cholmod_sparse.c \
 	cholmod_transpose.c \
-	cholmod_triplet.c
+	cholmod_triplet.c \
+	cholmod_version.c
 
 libcorel_la_SOURCES = $(libcore_la_SOURCES)
 libcorel_la_CPPFLAGS = $(AM_CPPFLAGS) -DDLONG

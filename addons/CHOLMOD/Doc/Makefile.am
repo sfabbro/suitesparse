@@ -67,6 +67,7 @@ UserGuide.pdf:
 	$(srcdir)/getproto '/int cholmod_factor_xtype/, /\*\) ;/' $(top_srcdir)/Include/cholmod_core.h > _factor_xtype.tex 
 	$(srcdir)/getproto '/typedef struct cholmod_dense/, /^}/' $(top_srcdir)/Include/cholmod_core.h > _dense.tex 
 	$(srcdir)/getproto '/cholmod_dense \*cholmod_allocate_dense/, /\*\) ;/' $(top_srcdir)/Include/cholmod_core.h > _allocate_dense.tex 
+	$(srcdir)/getproto '/cholmod_dense \*cholmod_ensure_dense/, /\*\) ;/' $(top_srcdir)/Include/cholmod_core.h > _ensure_dense.tex 
 	$(srcdir)/getproto '/cholmod_dense \*cholmod_zeros/, /\*\) ;/' $(top_srcdir)/Include/cholmod_core.h > _zeros.tex 
 	$(srcdir)/getproto '/cholmod_dense \*cholmod_ones/, /\*\) ;/' $(top_srcdir)/Include/cholmod_core.h > _ones.tex 
 	$(srcdir)/getproto '/cholmod_dense \*cholmod_eye/, /\*\) ;/' $(top_srcdir)/Include/cholmod_core.h > _eye.tex 
@@ -89,6 +90,7 @@ UserGuide.pdf:
 	$(srcdir)/getproto '/void \*cholmod_free/, /\*\) ;/' $(top_srcdir)/Include/cholmod_core.h > _free.tex 
 	$(srcdir)/getproto '/void \*cholmod_realloc/, /\*\) ;/' $(top_srcdir)/Include/cholmod_core.h > _realloc.tex 
 	$(srcdir)/getproto '/int cholmod_realloc_multiple/, /\*\) ;/' $(top_srcdir)/Include/cholmod_core.h > _realloc_multiple.tex 
+	$(srcdir)/getproto '/int cholmod_version/, /l_version/' $(top_srcdir)/Include/cholmod_core.h > _version.tex 
 	$(srcdir)/getproto '/itype defines the/, /define CHOLMOD_SUPERNODAL/' $(top_srcdir)/Include/cholmod_core.h > _defn.tex 
 	$(srcdir)/getproto '/int cholmod_check_common/, /\*\) ;/' $(top_srcdir)/Include/cholmod_check.h > _check_common.tex 
 	$(srcdir)/getproto '/int cholmod_print_common/, /\*\) ;/' $(top_srcdir)/Include/cholmod_check.h > _print_common.tex 
@@ -117,6 +119,7 @@ UserGuide.pdf:
 	$(srcdir)/getproto '/int cholmod_factorize /, /\*\) ;/' $(top_srcdir)/Include/cholmod_cholesky.h > _factorize.tex
 	$(srcdir)/getproto '/int cholmod_factorize_p/, /\*\) ;/' $(top_srcdir)/Include/cholmod_cholesky.h > _factorize_p.tex
 	$(srcdir)/getproto '/cholmod_dense \*cholmod_solve/, /\*\) ;/' $(top_srcdir)/Include/cholmod_cholesky.h > _solve.tex 
+	$(srcdir)/getproto '/int cholmod_solve2/, /\*\) ;/' $(top_srcdir)/Include/cholmod_cholesky.h > _solve2.tex 
 	$(srcdir)/getproto '/cholmod_sparse \*cholmod_spsolve/, /\*\) ;/' $(top_srcdir)/Include/cholmod_cholesky.h > _spsolve.tex 
 	$(srcdir)/getproto '/int cholmod_etree/, /\*\) ;/' $(top_srcdir)/Include/cholmod_cholesky.h > _etree.tex 
 	$(srcdir)/getproto '/int cholmod_rowcolcounts/, /\*\) ;/' $(top_srcdir)/Include/cholmod_cholesky.h > _rowcolcounts.tex 
@@ -127,6 +130,7 @@ UserGuide.pdf:
 	$(srcdir)/getproto '/int cholmod_rowfac_mask/, /\*\) ;/' $(top_srcdir)/Include/cholmod_cholesky.h > _rowfac_mask.tex 
 	$(srcdir)/getproto '/int cholmod_row_subtree/, /\*\) ;/' $(top_srcdir)/Include/cholmod_cholesky.h > _row_subtree.tex 
 	$(srcdir)/getproto '/int cholmod_row_lsubtree/, /\*\) ;/' $(top_srcdir)/Include/cholmod_cholesky.h > _row_lsubtree.tex 
+	$(srcdir)/getproto '/int cholmod_lsolve_pattern/, /\*\) ;/' $(top_srcdir)/Include/cholmod_cholesky.h > _lsolve_pattern.tex 
 	$(srcdir)/getproto '/int cholmod_resymbol /, /\*\) ;/' $(top_srcdir)/Include/cholmod_cholesky.h > _resymbol.tex
 	$(srcdir)/getproto '/int cholmod_resymbol_noperm/, /\*\) ;/' $(top_srcdir)/Include/cholmod_cholesky.h > _resymbol_noperm.tex 
 	$(srcdir)/getproto '/double cholmod_rcond/, /\*\) ;/' $(top_srcdir)/Include/cholmod_cholesky.h > _rcond.tex

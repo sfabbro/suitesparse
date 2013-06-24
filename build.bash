@@ -11,12 +11,13 @@ fi
 
 build_suitesparse_pkg() {
     local lib=$1 i
-
+    shift
     # remove old
     if [[ -d SuiteSparse ]];  then
 	chmod -R 755 SuiteSparse
 	rm -rf SuiteSparse
     fi
+    rm -rf ${lib}_build
     tar xf SuiteSparse.tar.gz
 
     # backup all Makefile's
@@ -70,7 +71,7 @@ build_suitesparse_pkg() {
 	mkdir ${lib}_build && \
 	pushd ${lib}_build && \
 	PKG_CONFIG_PATH="${PREFIX}/lib/pkgconfig:$PKG_CONFIG_PATH" \
-	../${src}/configure --prefix=${PREFIX} --disable-static && \
+	../${src}/configure --prefix=${PREFIX} --disable-static $@ && \
 	make install && \
 	popd && \
 	rm -rf ${lib}_build ${src} && \
@@ -100,7 +101,7 @@ if [[ $1 == ALL ]]; then
     build_suitesparse_pkg RBio
     build_suitesparse_pkg LDL
     build_suitesparse_pkg BTF
-    build_suitesparse_pkg CHOLMOD
+    build_suitesparse_pkg CHOLMOD --with-partition
     build_suitesparse_pkg KLU
     build_suitesparse_pkg SPQR
     build_suitesparse_pkg UMFPACK
