@@ -103,7 +103,7 @@ if [[ $1 == ALL ]]; then
     build_suitesparse_pkg BTF
     build_suitesparse_pkg CHOLMOD --with-partition
     build_suitesparse_pkg KLU
-    build_suitesparse_pkg SPQR
+    build_suitesparse_pkg SPQR --with-partition
     build_suitesparse_pkg UMFPACK
 else
     build_suitesparse_pkg $1
